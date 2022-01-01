@@ -1,0 +1,101 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color:lightskyblue;
+            text-align:center;
+            font-family: cursive;
+        }
+        h2 {
+            color:grey;
+            display:block;
+            padding:3% 5%;
+        }
+        .container {
+            background-color:white;
+            color:black;
+            margin:13% 30%;
+            border-radius:10px;
+            box-shadow:0px 6px 6px -2px black;
+        }
+        #joke {
+            font-size:110%;
+            margin:5%;
+        }
+        #btn {
+            margin:5%;
+            padding:2% 5%;
+            background-color:orange;
+            color:white;
+            border-radius:5px;
+            border:none;
+            font-family: cursive;
+        }
+        #btn:hover {
+            background-color:lightsalmon;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Dad's Jokes</h2>
+        <p id="joke">Joke loading...</p>
+        <button id="btn">Next Joke</button>
+
+    </div>
+    <script>
+        const joke = document.querySelector('#joke');
+        const btn = document.querySelector('#btn');
+        
+        // const generateJokes = () => {
+        //     // let myHeaders = new Headers();
+        //     // myHeaders.append('Accept','application/json');
+        //      const header = {
+        //          headers: {
+        //              Accept: 'application/json'
+        //          }
+        //    // headers:myHeaders
+        // }
+        //     fetch('https://icanhazdadjoke.com/', header)
+        //     .then((res) => res.json() )
+        //     .then((data) => joke.innerHTML=data.joke)
+        //     .catch((error) => console.log(error));
+        // }
+
+
+
+        const generateJokes = async () => {
+         try{
+            // let myHeaders = new Headers();
+            // myHeaders.append('Accept','application/json');
+             const header = {
+                 headers: {
+                     Accept: 'application/json'
+                 }
+             // headers:myHeaders
+           }
+            const res = await fetch('https://icanhazdadjoke.com/', header);
+            const data = await res.json();
+            joke.innerHTML=data.joke;
+         }
+         catch(error){
+             console.log(error);
+         }
+        }
+
+
+
+
+
+
+
+        btn.addEventListener('click',generateJokes);
+        generateJokes();
+        console.log(generateJokes());
+    </script>
+</body>
+</html>
